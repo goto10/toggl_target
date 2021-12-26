@@ -3,6 +3,9 @@ from dateutil.rrule import SA, SU, MO, TU, WE, TH, FR
 # Toggl API Token
 API_TOKEN             = 'ADD YOUR API TOKEN HERE'
 
+# Base Toggl API Url
+API_BASE_URL          = 'https://api.track.toggl.com/api/v8/'
+
 #Number Precision
 PRECISION             = 2
 

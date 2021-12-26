@@ -85,7 +85,7 @@ def hilite(string, status, bold):
 
 def main():
     w = workingtime.WorkingTime(config.WORKING_HOURS_PER_DAY, config.BUSINESS_DAYS, config.WEEK_DAYS)
-    a = api.TogglAPI(config.API_TOKEN, config.TIMEZONE)
+    a = api.TogglAPI(config.API_BASE_URL, config.API_TOKEN, config.TIMEZONE)
     t = target.Target()
 
     print("Hi")

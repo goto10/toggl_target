@@ -11,7 +11,8 @@ from requests.auth import HTTPBasicAuth
 class TogglAPI(object):
     """A wrapper for Toggl Api"""
 
-    def __init__(self, api_token, timezone):
+    def __init__(self, api_url, api_token, timezone):
+        self.api_url = api_url
         self.api_token = api_token
         self.timezone = timezone
 
@@ -22,15 +23,15 @@ class TogglAPI(object):
 
         >>> t = TogglAPI('_SECRET_TOGGLE_API_TOKEN_')
         >>> t._make_url(section='time_entries', params = {})
-        'https://www.toggl.com/api/v8/time_entries'
+        'https://api.track.toggl.com/api/v8/time_entries'
 
         >>> t = TogglAPI('_SECRET_TOGGLE_API_TOKEN_')
-        >>> t._make_url(section='time_entries', 
+        >>> t._make_url(section='time_entries',
                         params = {'start_date': '2010-02-05T15:42:46+02:00', 'end_date': '2010-02-12T15:42:46+02:00'})
-        'https://www.toggl.com/api/v8/time_entries?start_date=2010-02-05T15%3A42%3A46%2B02%3A00%2B02%3A00&end_date=2010-02-12T15%3A42%3A46%2B02%3A00%2B02%3A00'
+        'https://api.track.toggl.com/api/v8/time_entries?start_date=2010-02-05T15%3A42%3A46%2B02%3A00%2B02%3A00&end_date=2010-02-12T15%3A42%3A46%2B02%3A00%2B02%3A00'
         """
 
-        url = 'https://www.toggl.com/api/v8/{}'.format(section)
+        url = '{}{}'.format(self.api_url, section)
         if len(params) > 0:
             url = url + '?{}'.format(urlencode(params))
         return url
